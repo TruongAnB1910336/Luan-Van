@@ -1,0 +1,115 @@
+.div-i-header {
+    margin-left: 40%;
+}
+.nav {
+    background-color: aqua;
+}
+div.nav a {
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+.div-menu {
+   margin-top: 60px;
+  
+}
+.div-menu a {
+    padding: 8px;
+}
+.div-menu a:hover {
+    color: blue;
+}
+.dropdown1 {
+    position: relative;
+    display: inline;
+}
+.list-menu1 {
+    position: absolute;
+    display: none;
+    width: 260px;
+    margin-left: 260px;
+    border: 1px black solid;
+    background-color: black;        
+    z-index: 10;
+    text-align: left;
+}
+.dropdown1:hover .list-menu1 {
+    display: block;
+}
+div.list-menu1 a{
+    display: block;
+    color:#ffffff;
+}
+
+.dropdown2 {
+    position: relative;
+    display: inline;
+}
+.list-menu2 {
+    position: absolute;
+    display: none;
+    margin-left: 380px;
+    border: 1px black solid;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 10;
+    width: 120px;
+}
+.dropdown2:hover .list-menu2 {
+    display: block;
+}
+div.list-menu2 a{
+    display: block;
+    color:#ffffff;
+}
+.cap1 {
+    border: 1px solid;
+    width: 700px;
+    position: absolute;
+    background-color: black;
+    top: 100px;
+    right: 20px;
+    opacity: 0.6;
+    color: #ffffff;
+    padding: 10px 20px;
+}
+.cap2 {
+    border: 1px solid;
+    width: 700px;
+    position: absolute;
+    background-color: black;
+    top: 150px;
+    left: 30px;
+    opacity: 0.6;
+    color: #ffffff;
+    padding: 10px 20px;
+}
+.menu-monan1 {
+    position: relative;
+}
+.thucdon1 {
+    position: absolute;
+    border: 1px solid;
+    background-color: #ffffff;
+    top: 50px;
+    left: 10px;
+    padding: 10px;
+    opacity: 0.6;
+    color: red;
+    font-weight: 700;
+}
+.menu-monan2 {
+    position: relative;
+}
+.thucdon2 {
+    position: absolute;
+    border: 1px solid;
+    background-color: #ffffff;
+    top: 50px;
+    left: 10px;
+    padding: 10px;
+    opacity: 0.6;
+    color: red;
+    font-weight: 700;
+}
+
