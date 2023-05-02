@@ -1,7 +1,9 @@
 <?php 
     include_once('../connect.php');
     session_start();
+    
 ?>
+
 <!DOCTYPE html>
 <html lang="vi">
     <head>
@@ -76,13 +78,13 @@
        <div class="row container" style="margin-left: 70px;margin-top: 20px;margin-bottom: 10px;">
 
         <?php 
-                $sql_td1=mysqli_query($conn,"select * from thucdon where STT %2 != 0");
+                $sql_td1=mysqli_query($conn,"select * from thucdon");
         ?>
 
         <?php 
                 while($row_td=mysqli_fetch_array($sql_td1)){
         ?>
-        <div class="col-6">
+        <div class="col-6" style="margin-bottom:20px;">
             <div class="menu-monan1">
                 <img src="../img/monan.png" style="height: 400px;width: 500px;">
                 <div class="thucdon1">
@@ -105,56 +107,60 @@
                     <p>
                          <?php echo $row_td['tentd6'] ?>
                     </p>
-
+                    
                     <div style="color: blue;padding: 5px;">
-                        <p style="display: inline;">Yêu Thích <i class="fa-regular fa-star"></i></p>
-                        <a href="chitietthucdon.php?id=<?php echo $row_td['id_td'] ?>" class="btn btn-danger" style="color: white;">Xem Chi Tiết</a>
-                    </div>
-                </div>
-               </div>
-        </div>
-        
-        <?php 
-                $sql_td1=mysqli_query($conn,"select * from thucdon where STT != STT%2");
-        ?>
-        <?php 
-                while($row_td=mysqli_fetch_array($sql_td1)){
-        ?>
+                    <style>
+                        i.love<?php echo $row_td['id_td'] ?> {
+                            background-color: red;
+                        }
+                        i.macdinh<?php echo $row_td['id_td'] ?>{
+                            background-color: white;
 
-        <div class="col-6" style="margin-bottom: 30px;">
-            <div class="menu-monan2">
-                <img src="../img/monan.png" style="height: 400px;width: 500px;">
-                <div class="thucdon2">
-                    <h4 style="text-align: center;font-weight: 1000;">Menu <?php echo $row_td['STT'] ?></h4>
-                    <p>
-                         <?php echo $row_td['tentd1'] ?>
-                    </p>
-                    <p>
-                        <?php echo $row_td['tentd2'] ?>
-                    </p>
-                    <p>
-                        <?php echo $row_td['tentd3'] ?>
-                    </p>
-                    <p>
-                        <?php echo $row_td['tentd4'] ?>
-                    </p>
-                    <p>
-                         <?php echo $row_td['tentd5'] ?>
-                    </p>
-                    <p>
-                         <?php echo $row_td['tentd6'] ?>
-                    </p>
-
-                    <div style="color: blue;padding: 5px;">
-                        <p style="display: inline;">Yêu Thích <i class="fa-regular fa-star"></i></p>
+                        }
+                        #btn-love{
+                            border: none;
+                        }
+                </style>
+                    
+                    <form method="POST" id="form<?php echo $row_td['id_td'] ?>" style="display:inline;">
+                        <input type="hidden" name="id_td" value="<?php echo $row_td['id_td'] ?>">
+                    Yêu Thích <button type="submit" id="btn<?php echo $row_td['id_td'] ?>" class="add_love<?php echo $row_td['id_td'] ?>" style="border: none;"><i class="fa-regular fa-star macdinh<?php echo $row_td['id_td'] ?> "></i></button>
+                    </form>
+                    <script>
+                            
+                            const btn=document.querySelector('#btn<?php echo $row_td['id_td'] ?> i.macdinh<?php echo $row_td['id_td'] ?>');
+                            const b=document.getElementById('btn<?php echo $row_td['id_td'] ?>');
+                            btn.addEventListener('click',() =>{
+                                b.classList.toggle('add_love<?php echo $row_td['id_td'] ?>');
+                                b.classList.toggle('del_love<?php echo $row_td['id_td'] ?>');
+                                btn.classList.toggle('macdinh<?php echo $row_td['id_td'] ?>');  
+                                btn.classList.toggle('love<?php echo $row_td['id_td'] ?>');
+                              
+                            })
+                        </script>
+                        <script>
+                            $(document).ready(function(){
+                                $('#form<?php echo $row_td['id_td'] ?>').on('submit', function(event){
+                                    event.preventDefault();
+                                    var form_data = $(this).serialize();
+                                    $.ajax({
+                                    url:"add_love.php",
+                                    type:"POST",
+                                    data:form_data,
+                                    
+                                    })
+                                });
+                            })
+                </script>
+                        
                         <a href="chitietthucdon.php?id=<?php echo $row_td['id_td'] ?>" class="btn btn-danger" style="color: white;">Xem Chi Tiết</a>
                     </div>
                 </div>
                </div>
         </div>
         <?php } ?>
+       
         
-        <?php } ?>
 
        </div>
        
@@ -194,5 +200,6 @@
             </div>
         </div>
     </footer>
+                 
 </body>
 </html>
